@@ -1,0 +1,697 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import "tailwindcss";
+
+/* Tailwind v4 defaults to matching the OS's prefers-color-scheme.
+   This site toggles a `.dark` class on <html> via JS instead, so we
+   have to opt in to class-based dark mode explicitly. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================
+   DARK MODE (site-wide)
+   None of the 20 homepage sections define their own
+   dark colors, so instead of hand-editing every file
+   we invert the whole page's colors when html.dark is
+   active. Photos/screenshots are inverted back so they
+   keep their real colors, and the theme-switcher panel
+   is kept as-is since it's already dark by design.
+============================================ */
+html.dark body {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+html.dark img,
+html.dark video {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+html.dark #switchOFColour {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+@theme {
+  --font-Jakarta: "Plus Jakarta Sans", sans-serif;
+  --breakpoint-xsm: 375px;
+  --color-brand-pink: #f6467f;
+  --color-brand-pinkDark: #e8306c;
+  --color-brand-dark: #2b2b38;
+  --color-brand-muted: #6a6a74;
+}
+
+:root {
+  --page-content-width: 1280px;
+  --page-gutter: clamp(1.25rem, 3vw, 3rem);
+}
+
+/* Shared content alignment for every home-page section. */
+.container,
+.features-container {
+  width: 100%;
+  max-width: var(--page-content-width);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+/* Sections that use bespoke markup still follow the same page gutter. */
+#section-10 #lnk-3 > div,
+#section-10 #lnk-3 + section,
+#section-11 > section > .mb-12,
+#section-20 > section {
+  padding-inline: var(--page-gutter);
+}
+
+#section-20 > section > div:first-child {
+  max-width: var(--page-content-width);
+  margin-inline: auto;
+}
+
+.hide {
+  display: none;
+}
+
+/* Homepage welcome modal */
+.modal-is-open {
+  overflow: hidden;
+}
+.welcome-modal {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 220ms ease,
+    visibility 0s linear 220ms;
+}
+.welcome-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 220ms ease;
+}
+.welcome-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(18 25 38 / 0.7);
+  backdrop-filter: blur(4px);
+}
+.welcome-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 55rem);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  box-shadow: 0 1.5rem 4rem rgb(10 16 28 / 0.35);
+  transform: translateY(1rem) scale(0.98);
+  transition: transform 220ms ease;
+}
+.welcome-modal.is-open .welcome-modal__panel {
+  transform: translateY(0) scale(1);
+}
+.welcome-modal__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.welcome-modal__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.welcome-modal__close {
+  position: absolute;
+  z-index: 2;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #303b4f;
+  cursor: pointer;
+  font-size: 1.75rem;
+  line-height: 1;
+  box-shadow: 0 0.25rem 0.8rem rgb(10 16 28 / 0.18);
+}
+.welcome-modal__close:focus-visible,
+.welcome-modal__link:focus-visible {
+  outline: 3px solid #f6467f;
+  outline-offset: 3px;
+}
+@media (max-width: 640px) {
+  .welcome-modal__panel {
+    width: min(100%, 34rem);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .welcome-modal,
+  .welcome-modal__panel {
+    transition: none;
+  }
+}
+
+/* Transparent over the hero, then solid after the page begins to scroll. */
+.site-header {
+  isolation: isolate;
+  background-color: transparent;
+  color: #fff;
+  transition:
+    box-shadow 240ms ease,
+    backdrop-filter 240ms ease,
+    color 240ms ease;
+}
+
+.site-header::before {
+  position: absolute;
+  color: #353f4f;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  opacity: 0;
+  background: linear-gradient(90deg, #fff 78%, #fff 78%, #fff 78%);
+  box-shadow: 0 8px 24px rgb(47 25 78 / 0.12);
+  transition: opacity 240ms ease;
+}
+
+.site-header.is-scrolled {
+  color: #303b4f;
+}
+
+.site-header.is-scrolled::before {
+  opacity: 1;
+}
+
+.site-header.is-scrolled .header-logo-mark {
+  filter: brightness(0) saturate(100%) invert(62%) sepia(85%) saturate(2700%)
+    hue-rotate(310deg) brightness(101%) contrast(97%);
+}
+
+.site-header.is-scrolled .header-logo-text,
+.site-header.is-scrolled .header-desktop-nav > a,
+.site-header.is-scrolled .header-desktop-nav > .group > a,
+.site-header.is-scrolled .header-actions > a:first-child {
+  color: #303b4f;
+}
+
+.site-header.is-scrolled .header-menu-bar {
+  background-color: #303b4f;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header::before {
+    transition: none;
+  }
+}
+
+.faqs-3 {
+  padding: 20px;
+}
+
+.simple-list {
+  list-style: disc;
+  padding-left: 20px;
+}
+
+.list-item {
+  font-size: 21px;
+  color: #757575;
+}
+
+/* ============================================
+   FEATURES SECTION
+============================================ */
+
+.features-section {
+  width: 100%;
+  background: #fff;
+
+  padding: 80px 0 90px;
+}
+
+.features-container {
+  padding-block: 0;
+}
+
+/* ============================================
+   SECTION TITLE
+============================================ */
+
+.section-title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 95px;
+}
+
+.section-title h2 {
+  max-width: 900px;
+  margin: 0 auto 25px;
+
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.25;
+
+  letter-spacing: -0.5px;
+
+  color: #303b4f;
+}
+
+.section-title p {
+  margin: 0;
+
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+
+  font-size: 21px;
+  font-weight: 400;
+
+  line-height: 1.6;
+
+  color: #64748b;
+}
+
+/* ============================================
+   FEATURE GRID
+============================================ */
+
+.features-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  column-gap: 25px;
+
+  width: 100%;
+}
+
+/* ============================================
+   FEATURE BOX
+============================================ */
+
+.feature-box {
+  width: 100%;
+
+  text-align: center;
+}
+
+/* ============================================
+   ICON CONTAINER
+============================================ */
+
+.feature-icon {
+  position: relative;
+
+  width: 135px;
+  height: 105px;
+
+  margin: 0 auto 18px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   PINK BLOB
+============================================ */
+
+.feature-blob {
+  position: absolute;
+
+  width: 135px;
+  height: 135px;
+
+  top: -20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  z-index: 1;
+
+  overflow: visible;
+}
+
+/* =========================================
+   BLOB COLOR
+========================================= */
+
+.feature-blob path {
+  fill: #ffe8f0;
+}
+
+/* =========================================
+   MAIN ICON
+========================================= */
+
+.feature-svg {
+  position: relative;
+
+  z-index: 2;
+
+  width: 72px;
+  height: 72px;
+
+  display: block;
+
+  color: #f5427d;
+
+  fill: none;
+
+  stroke: currentColor;
+
+  stroke-width: 2.5;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* =========================================
+   INDIVIDUAL ICON SIZES
+========================================= */
+
+.marketing-icon {
+  width: 78px;
+  height: 78px;
+}
+
+.seo-icon {
+  width: 78px;
+  height: 78px;
+}
+
+/* =========================================
+   TEXT
+========================================= */
+
+.feature-text {
+  position: relative;
+
+  z-index: 3;
+
+  text-align: center;
+}
+
+/* =========================================
+   TITLE
+========================================= */
+
+.feature-text h3 {
+  margin: 0 0 10px;
+
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  line-height: 1.35;
+
+  color: #243b5a;
+}
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.feature-text p {
+  max-width: 390px;
+
+  margin: 0 auto;
+
+  font-family: "Plus Jakarta Sans", Arial, sans-serif;
+
+  font-size: 17px;
+
+  font-weight: 400;
+
+  line-height: 1.65;
+
+  color: #64748b;
+}
+
+/* =========================================
+   1200px
+========================================= */
+
+@media (max-width: 1199px) {
+  .features-section {
+    padding: 70px 0 80px;
+  }
+
+  .features-grid {
+    column-gap: 15px;
+  }
+
+  .feature-icon {
+    width: 115px;
+    height: 95px;
+
+    margin-bottom: 15px;
+  }
+
+  .feature-blob {
+    width: 115px;
+    height: 115px;
+  }
+
+  .feature-svg {
+    width: 65px;
+    height: 65px;
+  }
+
+  .marketing-icon,
+  .seo-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .feature-text h3 {
+    font-size: 19px;
+  }
+
+  .feature-text p {
+    font-size: 16px;
+  }
+}
+
+/* =========================================
+   991px
+========================================= */
+
+@media (max-width: 991px) {
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+
+    row-gap: 55px;
+
+    column-gap: 20px;
+  }
+
+  .feature-icon {
+    width: 110px;
+    height: 95px;
+  }
+
+  .feature-blob {
+    width: 110px;
+    height: 110px;
+  }
+
+  .feature-svg {
+    width: 65px;
+    height: 65px;
+  }
+
+  .feature-text h3 {
+    font-size: 21px;
+  }
+
+  .feature-text p {
+    font-size: 17px;
+  }
+}
+
+/* =========================================
+   767px
+========================================= */
+
+@media (max-width: 767px) {
+  .features-section {
+    padding: 60px 20px 70px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+
+    row-gap: 55px;
+  }
+
+  .feature-icon {
+    width: 125px;
+    height: 105px;
+
+    margin-bottom: 15px;
+  }
+
+  .feature-blob {
+    width: 125px;
+    height: 125px;
+  }
+
+  .feature-svg {
+    width: 70px;
+    height: 70px;
+  }
+
+  .marketing-icon,
+  .seo-icon {
+    width: 75px;
+    height: 75px;
+  }
+
+  .feature-text h3 {
+    font-size: 22px;
+  }
+
+  .feature-text p {
+    font-size: 17px;
+  }
+}
+
+/* =========================================
+   575px
+========================================= */
+
+@media (max-width: 575px) {
+  .features-section {
+    padding: 50px 15px 60px;
+  }
+
+  .feature-icon {
+    width: 120px;
+    height: 100px;
+  }
+
+  .feature-blob {
+    width: 120px;
+    height: 120px;
+  }
+
+  .feature-svg {
+    width: 68px;
+    height: 68px;
+  }
+
+  .feature-text h3 {
+    font-size: 21px;
+  }
+
+  .feature-text p {
+    font-size: 16px;
+  }
+}
+
+/* =========================================
+   BRAND MARQUEE VIEWPORT
+========================================= */
+
+.brand-marquee {
+  width: 100%;
+  overflow: hidden;
+
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+/* =========================================
+   MOVING TRACK
+========================================= */
+
+.brand-track {
+  --logo-width: 240px;
+  --logo-gap: 80px;
+
+  display: flex;
+  align-items: center;
+
+  width: max-content;
+
+  gap: var(--logo-gap);
+
+  /*
+    JavaScript controls the movement.
+    DO NOT add animation here.
+  */
+
+  transform: translateX(0);
+
+  transition: transform 700ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  will-change: transform;
+}
+
+/* =========================================
+   INDIVIDUAL LOGO
+========================================= */
+
+.brand-item {
+  width: var(--logo-width);
+  min-width: var(--logo-width);
+
+  height: 120px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+/* =========================================
+   LOGO IMAGE
+========================================= */
+
+.brand-item img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+  .brand-track {
+    --logo-width: 180px;
+    --logo-gap: 40px;
+  }
+
+  .brand-item {
+    height: 90px;
+  }
+}

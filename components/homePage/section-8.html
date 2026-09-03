@@ -1,0 +1,385 @@
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Solutions Feature Section</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              jakarta: ['"Plus Jakarta Sans"', "sans-serif"],
+            },
+            colors: {
+              theme: "#f8285a", // pink/rose accent
+              themeSoft: "#fde3ea", // light pink bg behind icons
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+
+      /* Blob shape sitting behind each icon */
+      .icon-blob {
+        position: relative;
+        width: 70px;
+        height: 70px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .icon-blob svg.blob-shape {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        fill: #fde3ea;
+        z-index: 1;
+      }
+      .icon-blob svg.icon-fg {
+        position: relative;
+        z-index: 2;
+        width: 28px;
+        height: 28px;
+      }
+
+      /* subtle hover lift on feature cards */
+      .fbox-12 {
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .fbox-12:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      /* fade-in-up animation for scroll reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body class="bg-white">
+    <section class="relative py-20 md:py-28 overflow-hidden">
+      <!-- Decorative background block behind the right-side cards -->
+      <div
+        class="hidden lg:block absolute top-[10%] right-0 w-[46%] h-[80%] bg-[#f2f4f8] -z-10"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-wrap items-center -mx-3">
+          <!-- LEFT TEXT BLOCK -->
+          <div class="w-full lg:w-5/12 px-3 reveal">
+            <span
+              class="block text-xs font-bold tracking-wider uppercase text-theme mb-4"
+            >
+              One-Stop Solution
+            </span>
+
+            <h2
+              class="text-3xl sm:text-4xl lg:text-[2.75rem] font-extrabold leading-tight text-slate-900 mb-5"
+            >
+              Smart solutions, real-time results
+            </h2>
+
+            <p class="text-slate-500 text-base leading-relaxed mb-6">
+              Sodales tempor sapien quaerat ipsum and congue undo laoreet turpis
+              neque auctor turpis vitae dolor luctus placerat magna ligula and
+              cursus vitae
+            </p>
+
+            <ul class="space-y-4">
+              <li class="flex items-start gap-3">
+                <span
+                  class="mt-1 shrink-0 w-5 h-5 rounded-full bg-theme/10 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-3 h-3 text-theme"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </span>
+                <p class="text-slate-600">
+                  Magna dolor luctus at egestas sapien
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="mt-1 shrink-0 w-5 h-5 rounded-full bg-theme/10 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-3 h-3 text-theme"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </span>
+                <p class="text-slate-600">
+                  Cursus purus suscipit vitae cubilia magnis volute egestas
+                  vitae sapien turpis ultrice auctor congue varius magnis
+                </p>
+              </li>
+              <li class="flex items-start gap-3">
+                <span
+                  class="mt-1 shrink-0 w-5 h-5 rounded-full bg-theme/10 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-3 h-3 text-theme"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="3"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </span>
+                <p class="text-slate-600">
+                  Volute turpis dolores and sagittis congue
+                </p>
+              </li>
+            </ul>
+          </div>
+          <!-- END LEFT TEXT BLOCK -->
+
+          <!-- RIGHT FEATURE CARDS -->
+          <div class="w-full lg:w-7/12 px-3 mt-12 lg:mt-0">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:pl-8">
+              <!-- CARD 1: Content Marketing -->
+              <div
+                class="fbox-12 reveal bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.07)] p-8"
+              >
+                <div class="icon-blob mb-5">
+                  <svg
+                    class="blob-shape"
+                    viewBox="0 0 200 200"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z"
+                      transform="translate(100 100)"
+                    ></path>
+                  </svg>
+                  <svg
+                    class="icon-fg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#f8285a"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                    <polyline points="2 17 12 22 22 17"></polyline>
+                    <polyline points="2 12 12 17 22 12"></polyline>
+                  </svg>
+                </div>
+                <h5 class="text-lg font-bold text-slate-900 mb-2">
+                  Content Marketing
+                </h5>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                  Porta semper lacus and cursus feugiat at primis ultrice a
+                  ligula auctor
+                </p>
+              </div>
+
+              <!-- CARD 2: Pay Per Click (PPC) -->
+              <div
+                class="fbox-12 reveal bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.07)] p-8"
+              >
+                <div class="icon-blob mb-5">
+                  <svg
+                    class="blob-shape"
+                    viewBox="0 0 200 200"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z"
+                      transform="translate(100 100)"
+                    ></path>
+                  </svg>
+                  <svg
+                    class="icon-fg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#f8285a"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M9 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                    <path d="M9 12v6"></path>
+                    <path d="M6 21h6"></path>
+                    <circle cx="18" cy="6" r="3"></circle>
+                    <path d="M18 3v1"></path>
+                    <path d="M18 8v1"></path>
+                    <path d="M20.1 4.9l-.7.7"></path>
+                    <path d="M16.6 7.4l-.7.7"></path>
+                  </svg>
+                </div>
+                <h5 class="text-lg font-bold text-slate-900 mb-2">
+                  Pay Per Click (PPC)
+                </h5>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                  Porta semper lacus and cursus feugiat at primis ultrice a
+                  ligula auctor
+                </p>
+              </div>
+
+              <!-- CARD 3: Video Marketing -->
+              <div
+                class="fbox-12 reveal bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.07)] p-8"
+              >
+                <div class="icon-blob mb-5">
+                  <svg
+                    class="blob-shape"
+                    viewBox="0 0 200 200"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z"
+                      transform="translate(100 100)"
+                    ></path>
+                  </svg>
+                  <svg
+                    class="icon-fg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#f8285a"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <rect x="2" y="4" width="20" height="13" rx="2"></rect>
+                    <path d="M8 20h8"></path>
+                    <path d="M12 17v3"></path>
+                    <polygon
+                      points="10.5 8 15.5 10.5 10.5 13"
+                      fill="#f8285a"
+                      stroke="none"
+                    ></polygon>
+                  </svg>
+                </div>
+                <h5 class="text-lg font-bold text-slate-900 mb-2">
+                  Video Marketing
+                </h5>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                  Porta semper lacus and cursus feugiat at primis ultrice a
+                  ligula auctor
+                </p>
+              </div>
+
+              <!-- CARD 4: Business Analytics -->
+              <div
+                class="fbox-12 reveal bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.07)] p-8"
+              >
+                <div class="icon-blob mb-5">
+                  <svg
+                    class="blob-shape"
+                    viewBox="0 0 200 200"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M69.8,-23C76.3,-2.7,57.6,25.4,32.9,42.8C8.1,60.3,-22.7,67,-39.1,54.8C-55.5,42.7,-57.5,11.7,-48.6,-11.9C-39.7,-35.5,-19.8,-51.7,5.9,-53.6C31.7,-55.6,63.3,-43.2,69.8,-23Z"
+                      transform="translate(100 100)"
+                    ></path>
+                  </svg>
+                  <svg
+                    class="icon-fg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#f8285a"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <circle cx="8" cy="8" r="5"></circle>
+                    <path d="M8 5.5v3l2 1"></path>
+                    <path
+                      d="M13 18l4-6 3 4 3-8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    ></path>
+                  </svg>
+                </div>
+                <h5 class="text-lg font-bold text-slate-900 mb-2">
+                  Business Analytics
+                </h5>
+                <p class="text-slate-500 text-sm leading-relaxed">
+                  Porta semper lacus and cursus feugiat at primis ultrice a
+                  ligula auctor
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- END RIGHT FEATURE CARDS -->
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Simple scroll-reveal animation (fadeInUp when element enters viewport)
+      document.addEventListener("DOMContentLoaded", () => {
+        const revealEls = document.querySelectorAll(".reveal");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, i) => {
+              if (entry.isIntersecting) {
+                setTimeout(() => {
+                  entry.target.classList.add("show");
+                }, i * 100); // slight stagger
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+
+        revealEls.forEach((el) => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>

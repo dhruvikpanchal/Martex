@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="./assets/icons/logo.png" />
+    <title>Martex - Tailwind CSS Software, SaaS & Startup Template</title>
+
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="./styles/output.css" />
+    <style>
+      html {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+      }
+
+      html::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge */
+      }
+
+      /* Initial state */
+      .scroll-animate {
+        opacity: 0;
+        transform: translateY(50px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+
+      /* When element becomes visible */
+      .scroll-animate.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Header -->
+    <div id="header"></div>
+
+    <!-- Modal -->
+    <div id="modal"></div>
+
+    <!-- Main -->
+    <main class="w-full bg-white">
+      <!-- complete -->
+      <div id="section-1"></div>
+
+      <!-- complete -->
+      <div id="section-2"></div>
+
+      <!-- complete -->
+      <div id="section-3"></div>
+
+      <!-- complete -->
+      <div id="section-4"></div>
+
+      <!-- complete -->
+      <div id="section-5"></div>
+
+      <!-- complete -->
+      <div id="section-6"></div>
+
+      <!-- complete -->
+      <div id="section-7"></div>
+
+      <!-- complete -->
+      <div id="section-8"></div>
+
+      <!-- complete -->
+      <div id="section-9"></div>
+
+      <!-- complete -->
+      <div id="section-10"></div>
+
+      <div id="section-11"></div>
+
+      <div id="section-12"></div>
+
+      <div id="section-13"></div>
+
+      <div id="section-14"></div>
+
+      <div id="section-15"></div>
+
+      <div id="section-16"></div>
+
+      <div id="section-17"></div>
+
+      <div id="section-18"></div>
+
+      <!-- complete -->
+      <div id="section-19"></div>
+
+      <!-- complete -->
+      <div id="section-20"></div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer"></div>
+
+    <!-- Color Switch -->
+    <div id="switchOFColour"></div>
+
+    <script type="module" src="script/mainSections.js"></script>
+    <script type="module" src="script/homePageSections.js"></script>
+    <script type="module" src="script/animation.js"></script>
+  </body>
+</html>

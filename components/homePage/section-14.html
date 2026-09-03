@@ -1,0 +1,100 @@
+<section
+  class="pt--100 pt-25 lg:max-xl:pt-20 md:max-lg:pt-17.5 ct-08 content-section division"
+>
+  <div class="container">
+    <!-- SECTION TITLE -->
+    <div class="flex flex-wrap -mx-3 justify-center">
+      <div
+        class="md:w-10/12 lg:max-xl:w-9/12 xl:w-9/12 w-full flex-[0_0_auto] px-3 max-w-full"
+      >
+        <div
+          class="section-title mb--70 xl:mb-17.5! lg:max-xl:mb-15! md:max-lg:mb-12.5! text-center!"
+        >
+          <!-- Title -->
+          <h2
+            class="s-50 w--700 xl:text-[3.125rem]! lg:max-xl:text-[2.875rem]! md:max-lg:text-[2.64705rem]! sm:max-md:text-[2.375rem]! xsm:max-sm:text-[2.0625rem]! font-bold! lg:max-xl:mb-5! md:max-lg:mb-3.75! sm:max-md:mb-5! xsm:max-sm:mb-3.75! xl:mb-6.5! xl:leading-tight! font-Jakarta sm:max-md:leading-[1.35]! xsm:max-sm:leading-[1.35]! tracking-[-0.5px]!"
+          >
+            Discover insights across all your data with Martex
+          </h2>
+          <!-- Text -->
+          <p
+            class="s-21 xl:text-[1.3125rem]! mt-4.5 mb-0! lg:max-xl:mt-3.75! lg:max-xl:text-[1.18755rem]! md:max-lg:text-[1.32352rem]! md:max-lg:mt-3! sm:max-md:text-[1.21875rem]! sm:max-md:mt-3! xsm:max-sm:text-[1.1875rem]! xsm:max-sm:mt-3! xsm:max-sm:px-[3%] xsm:max-sm:py-0"
+          >
+            Ligula risus auctor tempus magna feugiat lacinia.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- IMAGE BLOCK -->
+    <div class="flex flex-wrap -mx-3">
+      <div class="flex-[0_0_auto] w-full max-w-full px-3">
+        <div
+          class="img-block text-center! wow fadeInUp"
+          style="visibility: visible; animation-name: fadeInUp"
+        >
+          <img
+            class="img-fluid inline-block"
+            src="../../assets/images/img-19.png"
+            alt="video-preview"
+          />
+        </div>
+      </div>
+    </div>
+    <!-- ACTION BUTTON -->
+    <div class="flex flex-wrap -mx-3">
+      <div class="flex-[0_0_auto] w-full max-w-full px-3">
+        <div
+          class="img-block-btn text-center! wow fadeInUp"
+          style="visibility: visible; animation-name: fadeInUp"
+        >
+          <!-- Button -->
+          <a
+            href="#integrations-2"
+            class="inline-block border rounded-md bg-white border-black px-5 py-2 mt-5 text-[#353F4F] hover:border-[#E73971] hover:bg-[#E73971] hover:text-white transition-all duration-300 ease-in-out xl:text-xl lg:max-xl:text-xl md:max-lg:text-lg sm:max-md:text-base xsm:max-sm:text-sm font-bold"
+            >Monitor your activity</a
+          >
+          <!-- Advantages List -->
+          <div class="feature-line">
+            <span>Free 14 days trial</span>
+            <span>Exclusive Support</span>
+            <span>No Fees</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End container -->
+</section>
+
+<style>
+  .feature-line {
+    padding-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    font-size: 16px;
+    color: #52647a;
+  }
+
+  .feature-line span:not(:last-child)::after {
+    content: "|";
+    margin-left: 12px;
+  }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .feature-line {
+      flex-direction: column;
+      gap: 8px;
+
+      text-align: center;
+    }
+
+    /* Remove | on mobile */
+    .feature-line span:not(:last-child)::after {
+      content: none;
+    }
+  }
+</style>

@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Section 17 — Testimonials Carousel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      :root {
+        --ink: #262640;
+        --sub: #6b6b80;
+        --bg: #f3f3f8;
+        --card: #ffffff;
+        --dot: #d7d7e2;
+        --dot-active: #6b6b80;
+      }
+
+      body {
+        font-family:
+          "Inter",
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          sans-serif;
+        background: var(--bg);
+      }
+
+      .testimonial-section {
+        padding: 96px 0 80px;
+      }
+
+      .quote-mark {
+        font-family: Georgia, "Times New Roman", serif;
+        line-height: 1;
+        font-size: 72px;
+        color: #e3e3ec;
+        user-select: none;
+      }
+
+      /* ---- Carousel ---- */
+      .carousel-viewport {
+        overflow: hidden;
+        position: relative;
+        padding: 0 8px;
+      }
+
+      .carousel-track {
+        display: flex;
+        will-change: transform;
+        transition: transform 0.7s cubic-bezier(0.65, 0.05, 0.36, 1);
+      }
+
+      .carousel-slide {
+        flex: 0 0 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        padding: 0 4px;
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 900px) {
+        .carousel-slide {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .testimonial-card {
+        background: var(--card);
+        border-radius: 18px;
+        padding: 32px 28px 24px;
+        box-shadow: 0 12px 30px -18px rgba(38, 38, 64, 0.25);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 260px;
+      }
+
+      .card-body p {
+        color: #45455c;
+        font-size: 16.5px;
+        line-height: 1.6;
+      }
+
+      .avatar-img {
+        width: 46px;
+        height: 46px;
+        border-radius: 9999px;
+        object-fit: cover;
+        flex-shrink: 0;
+      }
+
+      /* ---- Dots ---- */
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 9999px;
+        background: var(--dot);
+        transition:
+          background 0.35s ease,
+          transform 0.35s ease;
+        cursor: pointer;
+      }
+
+      .dot.active {
+        background: var(--dot-active);
+        transform: scale(1.15);
+      }
+
+      .carousel-track.no-transition {
+        transition: none;
+      }
+    </style>
+  </head>
+  <body>
+    <section class="testimonial-section">
+      <div class="max-w-5xl mx-auto px-6 text-center">
+        <h2
+          class="text-4xl sm:text-5xl font-extrabold leading-tight"
+          style="color: var(--ink)"
+        >
+          Here's what our amazing clients are saying
+        </h2>
+        <p class="mt-5 text-lg" style="color: var(--sub)">
+          Ligula risus auctor tempus magna feugiat lacinia.
+        </p>
+      </div>
+
+      <div class="max-w-6xl mx-auto mt-16 px-4">
+        <div class="carousel-viewport">
+          <div class="carousel-track" id="carouselTrack">
+            <!-- Slide 1 -->
+            <div class="carousel-slide">
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    Augue at vitae purus tempus egestas volutpat augue undo
+                    cubilia laoreet magna suscipit luctus dolor blandit at purus
+                    tempus feugiat impedit
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=47"
+                    alt="Evelyn Martinez"
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Evelyn Martinez
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">
+                      WordPress Consultant
+                    </p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    Etiam sapien sagittis congue augue a massa varius egestas
+                    ultrice varius magna a tempus aliquet undo cursus suscipit
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=13"
+                    alt="Scott Boxer"
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Scott Boxer
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">
+                      @scott_boxer
+                    </p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    At sagittis congue augue diam egestas magna an ipsum vitae
+                    pi ipsum primis and cubilia laoreet a egestas a luctus donec
+                    ltrice ligu porta augue magna suscipit lectu gestas
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=15"
+                    alt="Joel Peterson"
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Joel Peterson
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">
+                      Internet Surfer
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    The onboarding felt effortless from day one. Every screen
+                    answered the question I had before I could even ask it.
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=32"
+                    alt="Priya Nair"
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Priya Nair
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">UX Designer</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    I switched from three separate tools to this single
+                    dashboard. My weekly reporting time dropped from four hours
+                    to twenty minutes.
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=51"
+                    alt="Marcus Webb"
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Marcus Webb
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">
+                      @marcus_builds
+                    </p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    Client galleries used to be a headache to manage. Now
+                    everything lives in one place and my clients notice the
+                    difference.
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=26"
+                    alt="Aiko Tanaka"
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Aiko Tanaka
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">
+                      Freelance Photographer
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    We tested five platforms before landing here. The difference
+                    showed up in week one: fewer tickets, happier team.
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=60"
+                    alt="Daniel Cho"
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Daniel Cho
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">
+                      Founder, GreenLeaf Co.
+                    </p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    Migrating our data was the part I dreaded most, but the
+                    import tool handled twelve thousand records without a single
+                    error.
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=44"
+                    alt="Rosa Fernandez"
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Rosa Fernandez
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">@rosa_codes</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    Every update makes the product quieter, not louder. Nothing
+                    new to relearn, just fewer clicks to do the same job.
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=68"
+                    alt="Tom Whitfield"
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Tom Whitfield
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">
+                      Small Business Owner
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <!-- Clone of Slide 1, appended for seamless infinite loop -->
+            <div class="carousel-slide" aria-hidden="true">
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    Augue at vitae purus tempus egestas volutpat augue undo
+                    cubilia laoreet magna suscipit luctus dolor blandit at purus
+                    tempus feugiat impedit
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=47"
+                    alt=""
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Evelyn Martinez
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">
+                      WordPress Consultant
+                    </p>
+                  </div>
+                </div>
+              </article>
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    Etiam sapien sagittis congue augue a massa varius egestas
+                    ultrice varius magna a tempus aliquet undo cursus suscipit
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=13"
+                    alt=""
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Scott Boxer
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">
+                      @scott_boxer
+                    </p>
+                  </div>
+                </div>
+              </article>
+              <article class="testimonial-card">
+                <div class="card-body">
+                  <div class="quote-mark">&ldquo;</div>
+                  <p class="-mt-4">
+                    At sagittis congue augue diam egestas magna an ipsum vitae
+                    pi ipsum primis and cubilia laoreet a egestas a luctus donec
+                    ltrice ligu porta augue magna suscipit lectu gestas
+                  </p>
+                </div>
+                <div class="flex items-center gap-3 mt-6">
+                  <img
+                    class="avatar-img"
+                    src="https://i.pravatar.cc/150?img=15"
+                    alt=""
+                  />
+                  <div class="text-left">
+                    <p class="font-semibold" style="color: var(--ink)">
+                      Joel Peterson
+                    </p>
+                    <p class="text-sm" style="color: var(--sub)">
+                      Internet Surfer
+                    </p>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dots -->
+        <div
+          class="flex items-center justify-center gap-2 mt-10"
+          id="dots"
+        ></div>
+      </div>
+    </section>
+
+    <script>
+      (function () {
+        const track = document.getElementById("carouselTrack");
+        const dotsWrap = document.getElementById("dots");
+        const slides = track.children; // includes 1 clone at the end
+        const realSlideCount = slides.length - 1; // 3 real blocks
+        const AUTOPLAY_DELAY = 2000; // pause 2s on each block
+        const TRANSITION_MS = 700; // matches CSS transition duration
+
+        let index = 0; // current slide index (0..realSlideCount, last is clone)
+        let timer = null;
+
+        // Build dots (one per real block)
+        for (let i = 0; i < realSlideCount; i++) {
+          const dot = document.createElement("button");
+          dot.className = "dot" + (i === 0 ? " active" : "");
+          dot.setAttribute("aria-label", "Go to testimonial block " + (i + 1));
+          dot.addEventListener("click", () => {
+            goTo(i);
+            restartAutoplay();
+          });
+          dotsWrap.appendChild(dot);
+        }
+        const dots = dotsWrap.querySelectorAll(".dot");
+
+        function updateDots(realIndex) {
+          dots.forEach((d, i) => d.classList.toggle("active", i === realIndex));
+        }
+
+        function setTrackPosition(withTransition) {
+          track.classList.toggle("no-transition", !withTransition);
+          track.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        function goTo(realIndex) {
+          index = realIndex;
+          setTrackPosition(true);
+          updateDots(realIndex);
+        }
+
+        function next() {
+          index++;
+          setTrackPosition(true);
+          updateDots(index % realSlideCount);
+
+          // If we just moved onto the cloned slide, snap back to real slide 0
+          if (index === realSlideCount) {
+            window.setTimeout(() => {
+              index = 0;
+              setTrackPosition(false); // no transition — instant reset
+              // force reflow so the next transition re-applies correctly
+              void track.offsetWidth;
+            }, TRANSITION_MS);
+          }
+        }
+
+        function startAutoplay() {
+          timer = setInterval(next, AUTOPLAY_DELAY);
+        }
+
+        function restartAutoplay() {
+          clearInterval(timer);
+          startAutoplay();
+        }
+
+        // init
+        setTrackPosition(false);
+        startAutoplay();
+      })();
+    </script>
+  </body>
+</html>
