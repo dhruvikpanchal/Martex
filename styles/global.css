@@ -8,24 +8,175 @@
 
 /* ============================================
    DARK MODE (site-wide)
-   None of the 20 homepage sections define their own
-   dark colors, so instead of hand-editing every file
-   we invert the whole page's colors when html.dark is
-   active. Photos/screenshots are inverted back so they
-   keep their real colors, and the theme-switcher panel
-   is kept as-is since it's already dark by design.
+   Class-based dark theme for html.dark.
+   Does not use CSS filter so that position: fixed
+   elements (header, floating style switcher, modal)
+   remain perfectly anchored to the viewport.
 ============================================ */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+html.dark,
 html.dark body {
-  filter: invert(1) hue-rotate(180deg);
+  background-color: #0c0e14;
+  color: #94a3b8;
 }
 
-html.dark img,
-html.dark video {
-  filter: invert(1) hue-rotate(180deg);
+html.dark main {
+  background-color: #0c0e14 !important;
 }
 
-html.dark #switchOFColour {
-  filter: invert(1) hue-rotate(180deg);
+html.dark section,
+html.dark .features-section,
+html.dark .content-section,
+html.dark .bg-white,
+html.dark .bg-\[\#fff\],
+html.dark .bg-gray-50,
+html.dark .bg-slate-50,
+html.dark .gr--smoke {
+  background-color: #12151e !important;
+}
+
+html.dark .bg-\[\#f2f4f8\],
+html.dark .bg-\[\#f4f4f9\],
+html.dark .bg-\[\#f9f9fb\] {
+  background-color: #181c28 !important;
+}
+
+/* Headings and dark text */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6,
+html.dark .text-\[\#303b4f\],
+html.dark .text-\[\#353F4F\],
+html.dark .text-\[\#2b2b38\],
+html.dark .text-\[\#243b5a\],
+html.dark .text-brand-dark,
+html.dark .section-title h2,
+html.dark .section-id,
+html.dark .s-24,
+html.dark .s-26,
+html.dark .s-38,
+html.dark .s-46 {
+  color: #f1f5f9 !important;
+}
+
+/* Paragraphs and muted text */
+html.dark p,
+html.dark .text-\[\#757575\],
+html.dark .text-\[\#64748b\],
+html.dark .text-brand-muted,
+html.dark .section-title p,
+html.dark .list-item,
+html.dark .simple-list li {
+  color: #94a3b8 !important;
+}
+
+/* Cards, boxes, and borders */
+html.dark .feature-box,
+html.dark .fbox-2,
+html.dark .fbox-5,
+html.dark .fbox-12,
+html.dark .txt-box,
+html.dark .card {
+  border-color: #262c3d !important;
+}
+
+html.dark .feature-blob path {
+  fill: color-mix(in srgb, var(--color-brand-pink, #f6467f) 20%, #12151e);
+}
+
+html.dark .border-gray-100,
+html.dark .border-gray-200,
+html.dark .border-slate-100,
+html.dark .border-slate-200 {
+  border-color: #262c3d !important;
+}
+
+/* Sticky Header in Dark Mode */
+html.dark .site-header.is-scrolled::before {
+  background: #12151e !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+html.dark .site-header.is-scrolled .header-logo-text,
+html.dark .site-header.is-scrolled .header-desktop-nav > a,
+html.dark .site-header.is-scrolled .header-desktop-nav > .group > a,
+html.dark .site-header.is-scrolled .header-actions > a:first-child {
+  color: #f1f5f9 !important;
+}
+
+html.dark .site-header.is-scrolled .header-menu-bar {
+  background-color: #f1f5f9 !important;
+}
+
+html.dark .site-header #mobileMenu {
+  background-color: #12151e !important;
+  border-color: #262c3d !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark .site-header #mobileMenu div {
+  background-color: #12151e !important;
+  border-color: #262c3d !important;
+}
+
+/* Header Dropdowns (About & Pages) in Dark Mode */
+html.dark .header-desktop-nav .group > div > div {
+  background-color: #161a26 !important;
+  border: 1px solid #262c3d !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark .header-desktop-nav .group > div > div a {
+  color: #e2e8f0 !important;
+}
+
+html.dark .header-desktop-nav .group > div > div a:hover {
+  background-color: #22293b !important;
+  color: var(--color-brand-pink, #f6467f) !important;
+}
+
+/* Footer in Dark Mode */
+html.dark footer {
+  background-color: #0a0c12 !important;
+  border-top: 1px solid #1e2433;
+}
+
+html.dark footer h4,
+html.dark footer .text-brand-dark {
+  color: #f1f5f9 !important;
+}
+
+html.dark footer a,
+html.dark footer .text-brand-muted {
+  color: #94a3b8 !important;
+}
+
+html.dark footer a:hover {
+  color: var(--color-brand-pink, #f6467f) !important;
+}
+
+/* Theme image swapping */
+html.dark .light-theme-img {
+  display: none !important;
+}
+
+html.dark .dark-theme-img {
+  display: block !important;
+  position: static !important;
+}
+
+/* Welcome modal in dark mode */
+html.dark .welcome-modal__panel {
+  background-color: #181c28;
+  border: 1px solid #262c3d;
 }
 
 @theme {
@@ -187,9 +338,21 @@ html.dark #switchOFColour {
   opacity: 1;
 }
 
+.header-logo-mark {
+  display: inline-block;
+  background-color: #ffffff;
+  mask: url("../assets/icons/logo.png") center / contain no-repeat;
+  -webkit-mask: url("../assets/icons/logo.png") center / contain no-repeat;
+  transition: background-color 240ms ease;
+}
+
+.site-header:not(.is-scrolled) .header-logo-mark {
+  background-color: #ffffff !important;
+}
+
 .site-header.is-scrolled .header-logo-mark {
-  filter: brightness(0) saturate(100%) invert(62%) sepia(85%) saturate(2700%)
-    hue-rotate(310deg) brightness(101%) contrast(97%);
+  background-color: var(--color-brand-pink, #f6467f) !important;
+  filter: none !important;
 }
 
 .site-header.is-scrolled .header-logo-text,
@@ -199,8 +362,47 @@ html.dark #switchOFColour {
   color: #303b4f;
 }
 
+.header-menu-bar {
+  background-color: #ffffff;
+}
+
 .site-header.is-scrolled .header-menu-bar {
   background-color: #303b4f;
+}
+
+html.dark .header-menu-bar,
+html.dark .site-header.is-scrolled .header-menu-bar {
+  background-color: #f1f5f9 !important;
+}
+
+/* Header Sign Up Button Hover */
+.header-signup-btn {
+  background-color: var(--color-brand-pink, #f6467f);
+  border: 2px solid transparent;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+/* When header is at the top (over hero/purple banner) */
+.site-header:not(.is-scrolled) .header-signup-btn:hover {
+  background-color: transparent !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* When header is scrolled in light mode -> black border & black text */
+.site-header.is-scrolled .header-signup-btn:hover {
+  background-color: transparent !important;
+  border-color: #303b4f !important;
+  color: #303b4f !important;
+}
+
+/* In dark mode (both top and scrolled) -> white border & white text */
+html.dark .site-header .header-signup-btn:hover,
+html.dark .site-header.is-scrolled .header-signup-btn:hover {
+  background-color: transparent !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -219,8 +421,7 @@ html.dark #switchOFColour {
   padding-left: 20px;
 }
 
-.list-item {
-  font-size: 21px;
+.simple-list .list-item {
   color: #757575;
 }
 
@@ -237,6 +438,50 @@ html.dark #switchOFColour {
 
 .features-container {
   padding-block: 0;
+}
+
+/* ============================================
+   SECTION-12 (FEATURES-2) IMAGE CARDS
+============================================ */
+.fbox-2 .fbox-img {
+  background-color: #f2f4f8;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  padding: 24px;
+  margin-bottom: 28px;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.fbox-2 .fbox-img img {
+  max-height: 140px;
+  max-width: 85%;
+  width: auto;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
+.fbox-2:hover .fbox-img {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+}
+
+html.dark .fbox-2 .fbox-img {
+  background-color: #1a202c !important;
+  border-color: rgba(255, 255, 255, 0.07) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.dark .fbox-2:hover .fbox-img {
+  background-color: #1e2634 !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45) !important;
 }
 
 /* ============================================
@@ -344,7 +589,7 @@ html.dark #switchOFColour {
 ========================================= */
 
 .feature-blob path {
-  fill: #ffe8f0;
+  fill: color-mix(in srgb, var(--color-brand-pink, #f6467f) 14%, #ffffff);
 }
 
 /* =========================================
@@ -361,7 +606,7 @@ html.dark #switchOFColour {
 
   display: block;
 
-  color: #f5427d;
+  color: var(--color-brand-pink, #f6467f);
 
   fill: none;
 
@@ -695,3 +940,337 @@ html.dark #switchOFColour {
     height: 90px;
   }
 }
+
+/* ============================================
+   SECTION-16 TESTIMONIALS (DARK / LIGHT THEME)
+============================================ */
+.testimonial-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(38, 38, 64, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 12px 30px -18px rgba(38, 38, 64, 0.25);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -12px rgba(38, 38, 64, 0.18);
+}
+
+.card-body p {
+  color: #45455c;
+}
+
+.quote-mark {
+  color: #e3e3ec;
+}
+
+html.dark .testimonial-section {
+  background-color: #12151e !important;
+}
+
+html.dark .testimonial-card {
+  background-color: #181c28 !important;
+  border-color: #262c3d !important;
+  box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.6) !important;
+}
+
+html.dark .testimonial-card:hover {
+  background-color: #1e2434 !important;
+  border-color: #363e54 !important;
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.75) !important;
+}
+
+html.dark .card-body p {
+  color: #cbd5e1 !important;
+}
+
+html.dark .quote-mark {
+  color: #2d3748 !important;
+}
+
+html.dark .testimonial-section h2 {
+  color: #f1f5f9 !important;
+}
+
+html.dark .testimonial-section p {
+  color: #94a3b8 !important;
+}
+
+html.dark .testimonial-card .font-semibold {
+  color: #f1f5f9 !important;
+}
+
+html.dark .testimonial-card .text-sm {
+  color: #94a3b8 !important;
+}
+
+html.dark .dot {
+  background: #2d3748 !important;
+}
+
+html.dark .dot.active {
+  background: #f1f5f9 !important;
+}
+
+/* ============================================
+   SECTION-18 INTEGRATIONS (DARK / LIGHT THEME)
+============================================ */
+.integrations-2-wrapper {
+  background-color: #f3f3f8;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.in_tool_logo {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background-color 0.25s ease;
+}
+
+.in_tool:hover .in_tool_logo {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+html.dark .integrations-2-wrapper {
+  background-image: none !important;
+  background-color: #161a24 !important;
+  border: 1px solid #262c3d !important;
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark .integrations-2-wrapper h2 {
+  color: #f1f5f9 !important;
+}
+
+html.dark .integrations-2-wrapper p {
+  color: #94a3b8 !important;
+}
+
+html.dark .in_tool_logo {
+  background-color: #212738 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+}
+
+html.dark .in_tool:hover .in_tool_logo {
+  background-color: #283044 !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark .in_tool h6 {
+  color: #f1f5f9 !important;
+}
+
+html.dark .integrations-2-wrapper .more-btn a,
+html.dark .btn-monitor-activity {
+  background-color: #212738 !important;
+  border-color: #3b455f !important;
+  color: #f1f5f9 !important;
+}
+
+.btn-monitor-activity:hover {
+  background-color: var(--color-brand-pink, #f6467f) !important;
+  border-color: var(--color-brand-pink, #f6467f) !important;
+  color: #ffffff !important;
+}
+
+html.dark .integrations-2-wrapper .more-btn a:hover,
+html.dark .btn-monitor-activity:hover {
+  background-color: var(--color-brand-pinkDark, #e8306c) !important;
+  border-color: var(--color-brand-pinkDark, #e8306c) !important;
+  color: #ffffff !important;
+}
+
+/* ============================================
+   DYNAMIC THEME BUTTONS & VIDEO CONTROLS
+============================================ */
+.btn-theme-accent {
+  background-color: var(--color-brand-pink, #f6467f) !important;
+  border-color: var(--color-brand-pink, #f6467f) !important;
+  color: #ffffff !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-theme-accent:hover {
+  background-color: var(--color-brand-pinkDark, #e8306c) !important;
+  border-color: var(--color-brand-pinkDark, #e8306c) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px -4px
+    color-mix(in srgb, var(--color-brand-pink, #f6467f) 45%, transparent) !important;
+}
+
+/* Video Play Button */
+.video-play-btn .video-play-ring {
+  background-color: color-mix(
+    in srgb,
+    var(--color-brand-pink, #f6467f) 22%,
+    transparent
+  );
+  animation: playPulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.video-play-btn:hover .video-play-ring {
+  background-color: color-mix(
+    in srgb,
+    var(--color-brand-pink, #f6467f) 36%,
+    transparent
+  );
+}
+
+.video-play-btn .video-play-inner {
+  background-color: var(--color-brand-pink, #f6467f) !important;
+  box-shadow: 0 14px 34px
+    color-mix(in srgb, var(--color-brand-pink, #f6467f) 42%, transparent) !important;
+}
+
+.video-play-btn:hover .video-play-inner {
+  background-color: var(--color-brand-pinkDark, #e8306c) !important;
+  box-shadow: 0 18px 40px
+    color-mix(in srgb, var(--color-brand-pink, #f6467f) 55%, transparent) !important;
+}
+
+@keyframes playPulse {
+  0% {
+    transform: scale(0.96);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.18);
+    opacity: 0.45;
+  }
+  100% {
+    transform: scale(0.96);
+    opacity: 0.85;
+  }
+}
+
+/* ============================================
+   SECTION 19: GET IN TOUCH LINK
+============================================ */
+.link-get-in-touch {
+  color: var(--color-brand-pink, #ff3f7f) !important;
+  text-decoration: underline !important;
+  transition: color 0.2s ease !important;
+}
+
+.link-get-in-touch:hover {
+  color: #353f4f !important;
+}
+
+html.dark .link-get-in-touch:hover {
+  color: #ffffff !important;
+}
+
+/* ============================================
+   SECTION 20: GET STARTED CTA BUTTON
+   Dynamic accent color on idle, preserved
+   purple/white border on hover!
+============================================ */
+.btn-cta-free {
+  background-color: var(--color-brand-pink, #f74780);
+  border-color: var(--color-brand-pink, #f74780);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    transform 0.2s ease !important;
+}
+
+.btn-cta-free:hover {
+  background-color: #613d97 !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* ============================================
+   SECTION 15: PROCESS STEPS HOVER ACCENT
+   Follows dynamic switcher color on hover!
+============================================ */
+.cbox-2:hover .cbox-2-ico,
+.cbox-2.group:hover .cbox-2-ico,
+.cbox-2-ico:hover {
+  background-color: transparent !important;
+  border-color: var(--color-brand-pink) !important;
+  color: var(--color-brand-pink) !important;
+}
+
+/* ============================================
+   SECTION 20: BANNER LIGHT TEXT IN DARK MODE
+   Preserves crisp white/light text on purple banner
+============================================ */
+html.dark #section-20 p,
+html.dark #section-20 [class*="text-white"],
+html.dark #section-20 .text-white,
+html.dark .bg-\[\#633F97\] p,
+html.dark #hero-1 p {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.btn-hover:hover {
+  background-color: transparent;
+  color: #ffffff;
+  border: #ffffff;
+  transition: all 0.3s ease;
+}
+
+/* ============================================
+   SECTION 1: HERO BUTTON HOVER
+   Transparent background, border & text match theme mode
+   (White on hero purple background / dark mode, Black in light mode if needed)
+============================================ */
+.btn-hero-free {
+  background-color: var(--color-brand-pink, #f6467f) !important;
+  border: 2px solid transparent !important;
+  color: #ffffff !important;
+  transition: all 0.25s ease !important;
+}
+
+.btn-hero-free:hover {
+  background-color: transparent !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   SECTION 7: WHAT'S POSSIBLE? BUTTON HOVER
+   Idle: theme pink
+   Hover: bg-transparent,
+   Light Mode -> black text & black border
+   Dark Mode  -> white text & white border
+============================================ */
+.btn-whats-possible {
+  background-color: var(--color-brand-pink, #f6467f) !important;
+  border: 2px solid transparent !important;
+  color: #ffffff !important;
+  transition: all 0.25s ease !important;
+}
+
+/* Light mode hover */
+.btn-whats-possible:hover {
+  background-color: transparent !important;
+  border-color: #303b4f !important;
+  color: #303b4f !important;
+  transform: translateY(-2px);
+}
+
+/* Dark mode hover */
+html.dark .btn-whats-possible:hover {
+  background-color: transparent !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+

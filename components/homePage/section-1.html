@@ -10,10 +10,10 @@
   <body>
     <section
       id="hero-1"
-      class="bg--scroll text-white hero-section relative md:max-lg:mt-20! z-3 w-full bg-no-repeat bg-position-[center_center] bg-cover bg-fixed sm:max-md:w-auto sm:max-md:bg-scroll xsm:max-sm:w-auto xsm:max-sm:bg-scroll bg-[url(../../../../assets/images/hero-1.jpg)] pt-32.5 pb--100 pb-25 lg:max-xl:pt-30 lg:max-xl:pb-20! md:max-lg:py-17.5 bg-[#894ADF]"
+      class="bg--scroll text-white hero-section relative md:max-lg:mt-20! z-3 w-full bg-no-repeat bg-position-[center_center] bg-cover bg-fixed bg-[url(../../../../assets/images/hero-1.jpg)] pt-32.5 pb-25 lg:max-xl:pt-30 lg:max-xl:pb-20! md:max-lg:py-17.5 bg-[#894ADF]"
     >
       <div class="container">
-        <div class="flex flex-wrap mx-3 items-center">
+        <div class="flex flex-wrap -mx-3 items-center">
           <!-- HERO TEXT -->
           <div
             class="xl:w-6/12 lg:max-xl:w-6/12 md:max-lg:w-6/12 w-full flex-[0_0_auto] px-3 max-w-full"
@@ -24,31 +24,42 @@
             >
               <!-- Title -->
               <h2
-                class="s-58 w--700 xl:text-[3.625rem]! lg:max-xl:text-[3.375rem]! md:max-lg:text-[3.08823rem]! sm:max-md:text-[2.5rem]! xsm:max-sm:text-[2.0625rem]! font-bold! leading-tight font-Jakarta sm:max-md:leading-[1.35]! xsm:max-sm:leading-[1.35]! xl:mb-7! lg:max-xl:mb-6! md:max-lg:mb-4.5! sm:max-md:mb-3.75! xsm:max-sm:mb-4.5!"
+                class="text-white font-Jakarta font-bold text-[2.25rem] sm:text-[3rem] lg:text-[3.35rem] xl:text-[3.625rem] leading-[1.12] tracking-tight mb-6"
               >
-                Content is the key to building an audience
+                Content is the key<br class="hidden sm:inline" />
+                to building an<br class="hidden sm:inline" />
+                audience
               </h2>
               <!-- Text -->
               <p
-                class="p-xl pr-[2%] md:max-lg:pr-0 xl:mb-8! lg:max-xl:mb-7! md:max-lg:mb-6! sm:max-md:mb-6.25! xsm:max-sm:mb-6.25! text-xl"
+                class="text-white/85 text-lg sm:text-[1.125rem] leading-[1.65] max-w-[500px] mb-8 font-normal"
               >
                 Mauris donec turpis suscipit sapien ociis sagittis sapien tempor
                 a volute ligula and aliquet tortor
               </p>
               <!-- Button -->
-              <a
-                href="#banner-3"
-                class="bg-brand-pink hover:bg-brand-pinkDark text-white font-semibold text-lg px-6 py-2.5 rounded-lg transition-colors hover:-translate-y-0.5 transform duration-150"
-                >Get started for free</a
+              <div>
+                <a
+                  href="#banner-3"
+                  class="btn-hero-free inline-block bg-brand-pink text-white font-semibold text-base sm:text-lg px-7 sm:px-8 py-3.5 rounded-lg border-2 border-transparent transition-all duration-300 shadow-md"
+                  >Get started for free</a
+                >
+              </div>
+              <!-- Guarantee Note -->
+              <div
+                class="flex items-center text-sm sm:text-base text-white/85 mt-4 sm:mt-5 font-normal"
               >
-              <p
-                class="p-sm btn-txt ico-15 p-0! xl:m-[20px_0_0_0]! lg:max-xl:mt-3.75! lg:max-xl:mb-0! lg:max-xl:mx-0 md:max-lg:mt-3.25! md:max-lg:mb-0! md:max-lg:mx-0 xsm:max-sm:mt-4.5! xsm:max-sm:mb-0! sm:max-md:mt-3.75! sm:max-md:mb-0! sm:max-md:mx-0 text-xl"
-              >
-                <span
-                  class="flaticon-check relative right-0.5 top-[0.5px]"
-                ></span>
-                No credit card needed, free 14-day trial
-              </p>
+                <svg
+                  class="w-4 h-4 mr-2 shrink-0 stroke-white stroke-[2.5]"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>No credit card needed, free 14-day trial</span>
+              </div>
             </div>
           </div>
           <!-- END HERO TEXT -->

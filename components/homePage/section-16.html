@@ -11,8 +11,27 @@
         --sub: #6b6b80;
         --bg: #f3f3f8;
         --card: #ffffff;
+        --card-border: rgba(38, 38, 64, 0.08);
+        --card-shadow: 0 12px 30px -18px rgba(38, 38, 64, 0.25);
+        --card-text: #45455c;
+        --quote: #e3e3ec;
         --dot: #d7d7e2;
         --dot-active: #6b6b80;
+      }
+
+      html.dark,
+      :root:has(.dark),
+      .dark {
+        --ink: #f1f5f9;
+        --sub: #94a3b8;
+        --bg: #12151e;
+        --card: #181c28;
+        --card-border: #262c3d;
+        --card-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.6);
+        --card-text: #cbd5e1;
+        --quote: #2d3748;
+        --dot: #2d3748;
+        --dot-active: #f1f5f9;
       }
 
       body {
@@ -27,14 +46,16 @@
 
       .testimonial-section {
         padding: 96px 0 80px;
+        transition: background-color 0.3s ease;
       }
 
       .quote-mark {
         font-family: Georgia, "Times New Roman", serif;
         line-height: 1;
         font-size: 72px;
-        color: #e3e3ec;
+        color: var(--quote);
         user-select: none;
+        transition: color 0.3s ease;
       }
 
       /* ---- Carousel ---- */
@@ -67,19 +88,31 @@
 
       .testimonial-card {
         background: var(--card);
+        border: 1px solid var(--card-border);
         border-radius: 18px;
         padding: 32px 28px 24px;
-        box-shadow: 0 12px 30px -18px rgba(38, 38, 64, 0.25);
+        box-shadow: var(--card-shadow);
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         min-height: 260px;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease,
+          background-color 0.25s ease,
+          border-color 0.25s ease;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 36px -12px rgba(38, 38, 64, 0.18);
       }
 
       .card-body p {
-        color: #45455c;
+        color: var(--card-text);
         font-size: 16.5px;
         line-height: 1.6;
+        transition: color 0.3s ease;
       }
 
       .avatar-img {
@@ -110,6 +143,55 @@
       .carousel-track.no-transition {
         transition: none;
       }
+
+      /* Dark mode explicit overrides */
+      html.dark .testimonial-section {
+        background-color: #12151e !important;
+      }
+
+      html.dark .testimonial-card {
+        background-color: #181c28 !important;
+        border-color: #262c3d !important;
+        box-shadow: 0 12px 30px -12px rgba(0, 0, 0, 0.6) !important;
+      }
+
+      html.dark .testimonial-card:hover {
+        background-color: #1e2434 !important;
+        border-color: #363e54 !important;
+        box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.75) !important;
+      }
+
+      html.dark .card-body p {
+        color: #cbd5e1 !important;
+      }
+
+      html.dark .quote-mark {
+        color: #2d3748 !important;
+      }
+
+      html.dark .testimonial-section h2 {
+        color: #f1f5f9 !important;
+      }
+
+      html.dark .testimonial-section p {
+        color: #94a3b8 !important;
+      }
+
+      html.dark .testimonial-card .font-semibold {
+        color: #f1f5f9 !important;
+      }
+
+      html.dark .testimonial-card .text-sm {
+        color: #94a3b8 !important;
+      }
+
+      html.dark .dot {
+        background: #2d3748 !important;
+      }
+
+      html.dark .dot.active {
+        background: #f1f5f9 !important;
+      }
     </style>
   </head>
   <body>
@@ -127,7 +209,7 @@
       </div>
 
       <div class="max-w-6xl mx-auto mt-16 px-4">
-        <div class="carousel-viewport">
+        <div class="hidden lg:block carousel-viewport">
           <div class="carousel-track" id="carouselTrack">
             <!-- Slide 1 -->
             <div class="carousel-slide">
@@ -444,15 +526,288 @@
           </div>
         </div>
 
-        <!-- Dots -->
+        <div class="block lg:hidden">
+          <div class="carousel-viewport">
+            <div class="carousel-track" id="mobileCarouselTrack">
+              <!-- 1 -->
+              <div class="carousel-slide">
+                <article class="testimonial-card">
+                  <div class="card-body">
+                    <div class="quote-mark">&ldquo;</div>
+                    <p class="-mt-4">
+                      Augue at vitae purus tempus egestas volutpat augue undo
+                      cubilia laoreet magna suscipit luctus dolor blandit at
+                      purus tempus feugiat impedit
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 mt-6">
+                    <img
+                      class="avatar-img"
+                      src="https://i.pravatar.cc/150?img=47"
+                      alt="Evelyn Martinez"
+                    />
+                    <div class="text-left">
+                      <p class="font-semibold" style="color: var(--ink)">
+                        Evelyn Martinez
+                      </p>
+                      <p class="text-sm" style="color: var(--sub)">
+                        WordPress Consultant
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <!-- 2 -->
+              <div class="carousel-slide">
+                <article class="testimonial-card">
+                  <div class="card-body">
+                    <div class="quote-mark">&ldquo;</div>
+                    <p class="-mt-4">
+                      Etiam sapien sagittis congue augue a massa varius egestas
+                      ultrice varius magna a tempus aliquet undo cursus suscipit
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 mt-6">
+                    <img
+                      class="avatar-img"
+                      src="https://i.pravatar.cc/150?img=13"
+                      alt="Scott Boxer"
+                    />
+                    <div class="text-left">
+                      <p class="font-semibold" style="color: var(--ink)">
+                        Scott Boxer
+                      </p>
+                      <p class="text-sm" style="color: var(--sub)">
+                        @scott_boxer
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <!-- 3 -->
+              <div class="carousel-slide">
+                <article class="testimonial-card">
+                  <div class="card-body">
+                    <div class="quote-mark">&ldquo;</div>
+                    <p class="-mt-4">
+                      At sagittis congue augue diam egestas magna an ipsum vitae
+                      pi ipsum primis and cubilia laoreet a egestas a luctus
+                      donec ltrice ligu porta augue magna suscipit lectu gestas
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 mt-6">
+                    <img
+                      class="avatar-img"
+                      src="https://i.pravatar.cc/150?img=15"
+                      alt="Joel Peterson"
+                    />
+                    <div class="text-left">
+                      <p class="font-semibold" style="color: var(--ink)">
+                        Joel Peterson
+                      </p>
+                      <p class="text-sm" style="color: var(--sub)">
+                        Internet Surfer
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <!-- 4 -->
+              <div class="carousel-slide">
+                <article class="testimonial-card">
+                  <div class="card-body">
+                    <div class="quote-mark">&ldquo;</div>
+                    <p class="-mt-4">
+                      Feugiat tempor nulla nec sagittis auctor dolor in libero
+                      an cubilia tincidunt ante feugiat egestas augue undo
+                      laoreet magna suscipit congue
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 mt-6">
+                    <img
+                      class="avatar-img"
+                      src="https://i.pravatar.cc/150?img=68"
+                      alt="Tom Whitfield"
+                    />
+                    <div class="text-left">
+                      <p class="font-semibold" style="color: var(--ink)">
+                        Tom Whitfield
+                      </p>
+                      <p class="text-sm" style="color: var(--sub)">
+                        Small Business Owner
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <!-- 5 -->
+              <div class="carousel-slide">
+                <article class="testimonial-card">
+                  <div class="card-body">
+                    <div class="quote-mark">&ldquo;</div>
+                    <p class="-mt-4">
+                      Augue at vitae purus tempus egestas volutpat augue undo
+                      cubilia laoreet magna suscipit luctus dolor blandit at
+                      purus tempus feugiat impedit
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 mt-6">
+                    <img
+                      class="avatar-img"
+                      src="https://i.pravatar.cc/150?img=47"
+                      alt="Evelyn Martinez"
+                    />
+                    <div class="text-left">
+                      <p class="font-semibold" style="color: var(--ink)">
+                        Evelyn Martinez
+                      </p>
+                      <p class="text-sm" style="color: var(--sub)">
+                        WordPress Consultant
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <!-- 6 -->
+              <div class="carousel-slide">
+                <article class="testimonial-card">
+                  <div class="card-body">
+                    <div class="quote-mark">&ldquo;</div>
+                    <p class="-mt-4">
+                      Augue at vitae purus tempus egestas volutpat augue undo
+                      cubilia laoreet magna suscipit luctus dolor blandit at
+                      purus tempus feugiat impedit
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 mt-6">
+                    <img
+                      class="avatar-img"
+                      src="https://i.pravatar.cc/150?img=47"
+                      alt="Evelyn Martinez"
+                    />
+                    <div class="text-left">
+                      <p class="font-semibold" style="color: var(--ink)">
+                        Evelyn Martinez
+                      </p>
+                      <p class="text-sm" style="color: var(--sub)">
+                        WordPress Consultant
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <!-- 7 -->
+              <div class="carousel-slide">
+                <article class="testimonial-card">
+                  <div class="card-body">
+                    <div class="quote-mark">&ldquo;</div>
+                    <p class="-mt-4">
+                      Augue at vitae purus tempus egestas volutpat augue undo
+                      cubilia laoreet magna suscipit luctus dolor blandit at
+                      purus tempus feugiat impedit
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 mt-6">
+                    <img
+                      class="avatar-img"
+                      src="https://i.pravatar.cc/150?img=47"
+                      alt="Evelyn Martinez"
+                    />
+                    <div class="text-left">
+                      <p class="font-semibold" style="color: var(--ink)">
+                        Evelyn Martinez
+                      </p>
+                      <p class="text-sm" style="color: var(--sub)">
+                        WordPress Consultant
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <!-- 8 -->
+              <div class="carousel-slide">
+                <article class="testimonial-card">
+                  <div class="card-body">
+                    <div class="quote-mark">&ldquo;</div>
+                    <p class="-mt-4">
+                      Augue at vitae purus tempus egestas volutpat augue undo
+                      cubilia laoreet magna suscipit luctus dolor blandit at
+                      purus tempus feugiat impedit
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 mt-6">
+                    <img
+                      class="avatar-img"
+                      src="https://i.pravatar.cc/150?img=47"
+                      alt="Evelyn Martinez"
+                    />
+                    <div class="text-left">
+                      <p class="font-semibold" style="color: var(--ink)">
+                        Evelyn Martinez
+                      </p>
+                      <p class="text-sm" style="color: var(--sub)">
+                        WordPress Consultant
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <!-- Clone of 1 -->
+              <div class="carousel-slide" aria-hidden="true">
+                <article class="testimonial-card">
+                  <div class="card-body">
+                    <div class="quote-mark">&ldquo;</div>
+                    <p class="-mt-4">
+                      Augue at vitae purus tempus egestas volutpat augue undo
+                      cubilia laoreet magna suscipit luctus dolor blandit at
+                      purus tempus feugiat impedit
+                    </p>
+                  </div>
+                  <div class="flex items-center gap-3 mt-6">
+                    <img
+                      class="avatar-img"
+                      src="https://i.pravatar.cc/150?img=47"
+                      alt="Evelyn Martinez"
+                    />
+                    <div class="text-left">
+                      <p class="font-semibold" style="color: var(--ink)">
+                        Evelyn Martinez
+                      </p>
+                      <p class="text-sm" style="color: var(--sub)">
+                        WordPress Consultant
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- desktop Dots -->
         <div
-          class="flex items-center justify-center gap-2 mt-10"
+          class="hidden lg:flex items-center justify-center gap-2 mt-10"
           id="dots"
+        ></div>
+
+        <!-- phone dot -->
+        <div
+          class="flex lg:hidden items-center justify-center gap-2 mt-10"
+          id="mobileDots"
         ></div>
       </div>
     </section>
 
     <script>
+      // desktop js
       (function () {
         const track = document.getElementById("carouselTrack");
         const dotsWrap = document.getElementById("dots");
@@ -518,6 +873,95 @@
         }
 
         // init
+        setTrackPosition(false);
+        startAutoplay();
+      })();
+
+      // phone js
+      (function () {
+        const track = document.getElementById("mobileCarouselTrack");
+        const dotsWrap = document.getElementById("mobileDots");
+
+        if (!track || !dotsWrap) return;
+
+        const slides = track.children;
+
+        // 8 real slides + 1 clone
+        const realSlideCount = slides.length - 1;
+
+        const AUTOPLAY_DELAY = 2000;
+        const TRANSITION_MS = 700;
+
+        let index = 0;
+        let timer = null;
+
+        // Create 8 dots
+        for (let i = 0; i < realSlideCount; i++) {
+          const dot = document.createElement("button");
+
+          dot.className = "dot" + (i === 0 ? " active" : "");
+
+          dot.setAttribute("aria-label", "Go to testimonial " + (i + 1));
+
+          dot.addEventListener("click", () => {
+            goTo(i);
+            restartAutoplay();
+          });
+
+          dotsWrap.appendChild(dot);
+        }
+
+        const dots = dotsWrap.querySelectorAll(".dot");
+
+        function updateDots(realIndex) {
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === realIndex);
+          });
+        }
+
+        function setTrackPosition(withTransition) {
+          track.classList.toggle("no-transition", !withTransition);
+
+          track.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        function goTo(realIndex) {
+          index = realIndex;
+
+          setTrackPosition(true);
+          updateDots(realIndex);
+        }
+
+        function next() {
+          index++;
+
+          setTrackPosition(true);
+
+          updateDots(index % realSlideCount);
+
+          // Reached clone
+          if (index === realSlideCount) {
+            window.setTimeout(() => {
+              index = 0;
+
+              setTrackPosition(false);
+
+              // Force reflow
+              void track.offsetWidth;
+            }, TRANSITION_MS);
+          }
+        }
+
+        function startAutoplay() {
+          timer = setInterval(next, AUTOPLAY_DELAY);
+        }
+
+        function restartAutoplay() {
+          clearInterval(timer);
+          startAutoplay();
+        }
+
+        // Initialize
         setTrackPosition(false);
         startAutoplay();
       })();

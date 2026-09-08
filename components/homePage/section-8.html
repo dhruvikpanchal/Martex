@@ -33,39 +33,83 @@
         font-family: "Plus Jakarta Sans", sans-serif;
       }
 
+      /* Theme dynamic color bindings */
+      .text-theme {
+        color: var(--color-brand-pink, #f6467f) !important;
+      }
+      .bg-theme\/10 {
+        background-color: color-mix(in srgb, var(--color-brand-pink, #f6467f) 12%, transparent) !important;
+      }
+
       /* Blob shape sitting behind each icon */
       .icon-blob {
         position: relative;
-        width: 70px;
-        height: 70px;
+        width: 90px;
+        height: 82px;
         display: flex;
         align-items: center;
         justify-content: center;
       }
       .icon-blob svg.blob-shape {
         position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        fill: #fde3ea;
+        width: 104px;
+        height: 104px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-48%, -50%);
+        fill: color-mix(in srgb, var(--color-brand-pink, #f6467f) 14%, #ffffff);
         z-index: 1;
+        overflow: visible;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), fill 0.3s ease;
+      }
+      html.dark .icon-blob svg.blob-shape {
+        fill: color-mix(in srgb, var(--color-brand-pink, #f6467f) 22%, #12151e);
       }
       .icon-blob svg.icon-fg {
         position: relative;
         z-index: 2;
-        width: 28px;
-        height: 28px;
+        width: 56px;
+        height: 56px;
+        display: block;
+        color: var(--color-brand-pink, #f6467f);
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
       }
 
-      /* subtle hover lift on feature cards */
+      /* Feature cards styling and hover interactions */
       .fbox-12 {
+        background-color: #ffffff;
+        border: 1px solid rgba(0, 0, 0, 0.05);
         transition:
-          transform 0.25s ease,
-          box-shadow 0.25s ease;
+          transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+          border-color 0.3s ease,
+          background-color 0.3s ease;
       }
       .fbox-12:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 28px 0 rgba(0, 0, 0, 0.1);
+        transform: translateY(-7px);
+        box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.04);
+        border-color: rgba(0, 0, 0, 0.08);
+      }
+      .fbox-12:hover .icon-blob svg.blob-shape {
+        transform: translate(-48%, -50%) scale(1.08) rotate(3deg);
+      }
+      .fbox-12:hover .icon-blob svg.icon-fg {
+        transform: scale(1.06);
+      }
+
+      /* Dark mode styling */
+      html.dark .fbox-12 {
+        background-color: #181c28 !important;
+        border-color: #262c3d !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+      }
+      html.dark .fbox-12:hover {
+        background-color: #1e2434 !important;
+        border-color: #363e54 !important;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6) !important;
+      }
+      html.dark .section-8-decor-bg {
+        background-color: #141824 !important;
       }
 
       /* fade-in-up animation for scroll reveal */
@@ -87,7 +131,7 @@
     <section class="relative py-20 md:py-28 overflow-hidden">
       <!-- Decorative background block behind the right-side cards -->
       <div
-        class="hidden lg:block absolute top-[10%] right-0 w-[46%] h-[80%] bg-[#f2f4f8] -z-10"
+        class="section-8-decor-bg hidden lg:block absolute top-[10%] right-0 w-[46%] h-[80%] bg-[#f2f4f8] -z-10"
       ></div>
 
       <div class="max-w-7xl mx-auto px-6">
@@ -204,16 +248,23 @@
                   </svg>
                   <svg
                     class="icon-fg"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 64 64"
                     fill="none"
-                    stroke="#f8285a"
-                    stroke-width="1.8"
+                    stroke="currentColor"
+                    stroke-width="2.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                    <polyline points="2 17 12 22 22 17"></polyline>
-                    <polyline points="2 12 12 17 22 12"></polyline>
+                    <!-- Layer 1 (Top Diamond) -->
+                    <polygon points="32 8 56 20 32 32 8 20"></polygon>
+                    <!-- Parallel content/text lines on top layer -->
+                    <line x1="26" y1="11" x2="44" y2="20"></line>
+                    <line x1="20" y1="14" x2="38" y2="23"></line>
+                    <line x1="14" y1="17" x2="32" y2="26"></line>
+                    <!-- Layer 2 (Middle Plane) -->
+                    <polyline points="8 31 32 43 56 31"></polyline>
+                    <!-- Layer 3 (Bottom Plane) -->
+                    <polyline points="8 42 32 54 56 42"></polyline>
                   </svg>
                 </div>
                 <h5 class="text-lg font-bold text-slate-900 mb-2">
@@ -242,21 +293,27 @@
                   </svg>
                   <svg
                     class="icon-fg"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 64 64"
                     fill="none"
-                    stroke="#f8285a"
-                    stroke-width="1.8"
+                    stroke="currentColor"
+                    stroke-width="2.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <path d="M9 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
-                    <path d="M9 12v6"></path>
-                    <path d="M6 21h6"></path>
-                    <circle cx="18" cy="6" r="3"></circle>
-                    <path d="M18 3v1"></path>
-                    <path d="M18 8v1"></path>
-                    <path d="M20.1 4.9l-.7.7"></path>
-                    <path d="M16.6 7.4l-.7.7"></path>
+                    <!-- Mouse Body -->
+                    <rect x="10" y="20" width="24" height="36" rx="12"></rect>
+                    <!-- Mouse top button divider -->
+                    <line x1="22" y1="20" x2="22" y2="33"></line>
+                    <line x1="10" y1="33" x2="34" y2="33"></line>
+                    <!-- Click burst rays over left button -->
+                    <line x1="16" y1="7" x2="16" y2="13"></line>
+                    <line x1="9" y1="10" x2="13" y2="14"></line>
+                    <line x1="4" y1="18" x2="9" y2="20"></line>
+                    <!-- Dollar Badge Coin -->
+                    <circle cx="45" cy="23" r="13"></circle>
+                    <!-- Dollar sign inside badge -->
+                    <line x1="45" y1="16" x2="45" y2="30"></line>
+                    <path d="M49 19c-1-1.2-2.5-1.5-4-1.5-2.5 0-4 1.2-4 3 0 3 8 2.2 8 5.5 0 2-1.8 3.5-4 3.5-2 0-3.5-.8-4.5-2"></path>
                   </svg>
                 </div>
                 <h5 class="text-lg font-bold text-slate-900 mb-2">
@@ -285,21 +342,27 @@
                   </svg>
                   <svg
                     class="icon-fg"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 64 64"
                     fill="none"
-                    stroke="#f8285a"
-                    stroke-width="1.8"
+                    stroke="currentColor"
+                    stroke-width="2.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <rect x="2" y="4" width="20" height="13" rx="2"></rect>
-                    <path d="M8 20h8"></path>
-                    <path d="M12 17v3"></path>
+                    <!-- Video player monitor frame -->
+                    <rect x="8" y="10" width="48" height="32" rx="3"></rect>
+                    <!-- Centered Play triangle (outline/hollow) -->
                     <polygon
-                      points="10.5 8 15.5 10.5 10.5 13"
-                      fill="#f8285a"
-                      stroke="none"
+                      points="28 19 39 26 28 33"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linejoin="round"
                     ></polygon>
+                    <!-- Scrubber slider bar and circle pin -->
+                    <line x1="8" y1="50" x2="33" y2="50"></line>
+                    <circle cx="39" cy="50" r="5" stroke="currentColor" stroke-width="2.5" fill="none"></circle>
+                    <line x1="45" y1="50" x2="56" y2="50"></line>
                   </svg>
                 </div>
                 <h5 class="text-lg font-bold text-slate-900 mb-2">
@@ -328,20 +391,23 @@
                   </svg>
                   <svg
                     class="icon-fg"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 64 64"
                     fill="none"
-                    stroke="#f8285a"
-                    stroke-width="1.8"
+                    stroke="currentColor"
+                    stroke-width="2.5"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                   >
-                    <circle cx="8" cy="8" r="5"></circle>
-                    <path d="M8 5.5v3l2 1"></path>
-                    <path
-                      d="M13 18l4-6 3 4 3-8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></path>
+                    <!-- Dollar sign on top-left -->
+                    <line x1="16" y1="7" x2="16" y2="19"></line>
+                    <path d="M19.5 9.5c-.8-.7-1.8-1-3.2-1-1.8 0-2.8.8-2.8 2 0 2 5 1.5 5 3.8 0 1.5-1.3 2.5-3 2.5-1.5 0-2.5-.5-3.2-1.2"></path>
+                    <!-- Upward trending growth line with arrow -->
+                    <polyline points="8 37 21 23 35 30 54 12"></polyline>
+                    <polyline points="43 12 54 12 54 23"></polyline>
+                    <!-- 3 Bar chart columns below -->
+                    <rect x="8" y="44" width="10" height="12" rx="1.5"></rect>
+                    <rect x="23" y="38" width="10" height="18" rx="1.5"></rect>
+                    <rect x="38" y="30" width="10" height="26" rx="1.5"></rect>
                   </svg>
                 </div>
                 <h5 class="text-lg font-bold text-slate-900 mb-2">

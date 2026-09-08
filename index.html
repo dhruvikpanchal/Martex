@@ -6,9 +6,37 @@
     <link rel="icon" type="image/png" href="./assets/icons/logo.png" />
     <title>Martex - Tailwind CSS Software, SaaS & Startup Template</title>
 
+    <!-- Immediate Theme Restoration -->
+    <script>
+      (function () {
+        try {
+          var mode = localStorage.getItem("martex_theme_mode");
+          if (mode === "dark") {
+            document.documentElement.classList.add("dark");
+          }
+          var colorStr = localStorage.getItem("martex_theme_color");
+          if (colorStr) {
+            var color = JSON.parse(colorStr);
+            if (color && color.primary) {
+              document.documentElement.style.setProperty("--color-brand-pink", color.primary);
+              if (color.dark) {
+                document.documentElement.style.setProperty("--color-brand-pinkDark", color.dark);
+              }
+            }
+          }
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Tailwind -->
     <link rel="stylesheet" href="./styles/output.css" />
     <style>
+      html,
+      body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
       html {
         scrollbar-width: none; /* Firefox */
         -ms-overflow-style: none; /* IE/Edge */
@@ -18,17 +46,131 @@
         display: none; /* Chrome, Safari, Edge */
       }
 
-      /* Initial state */
-      .scroll-animate {
+      /* Preloader Styles */
+      #preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff;
+        transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      html.dark #preloader {
+        background-color: #0c0e14;
+      }
+
+      #preloader.preloader-hidden {
         opacity: 0;
-        transform: translateY(50px);
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .loader-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .loader-logo-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+      }
+
+      .loader-spinner-ring {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 3px solid rgba(246, 70, 127, 0.15);
+        border-top-color: var(--color-brand-pink, #f6467f);
+        border-right-color: var(--color-brand-pink, #f6467f);
+        animation: loaderSpin 1s cubic-bezier(0.6, 0.2, 0.4, 0.9) infinite;
+      }
+
+      .loader-logo-icon {
+        width: 42px;
+        height: 42px;
+        background-color: var(--color-brand-pink, #f6467f);
+        -webkit-mask: url("./assets/icons/logo.png") center / contain no-repeat;
+        mask: url("./assets/icons/logo.png") center / contain no-repeat;
+        animation: loaderPulse 1.8s ease-in-out infinite;
+      }
+
+      .loader-brand-title {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+        font-size: 1.25rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        color: #1e293b;
+        margin: 0;
+        text-transform: uppercase;
+      }
+
+      html.dark .loader-brand-title {
+        color: #f1f5f9;
+      }
+
+      .loader-progress-track {
+        width: 130px;
+        height: 3px;
+        background: rgba(0, 0, 0, 0.06);
+        border-radius: 9999px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      html.dark .loader-progress-track {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .loader-progress-bar {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: 50%;
+        background: linear-gradient(90deg, #633f97, var(--color-brand-pink, #f6467f));
+        border-radius: 9999px;
+        animation: loaderIndeterminate 1.4s ease-in-out infinite;
+      }
+
+      @keyframes loaderSpin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      @keyframes loaderPulse {
+        0%, 100% { transform: scale(0.92); opacity: 0.85; }
+        50% { transform: scale(1.05); opacity: 1; }
+      }
+
+      @keyframes loaderIndeterminate {
+        0% { left: -40%; width: 40%; }
+        50% { left: 20%; width: 60%; }
+        100% { left: 100%; width: 40%; }
+      }
+
+      /* Initial state for scroll animations */
+      .scroll-animate,
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
         transition:
           opacity 0.8s ease,
           transform 0.8s ease;
       }
 
       /* When element becomes visible */
-      .scroll-animate.show {
+      .scroll-animate.show,
+      .reveal.show {
         opacity: 1;
         transform: translateY(0);
       }
@@ -36,6 +178,20 @@
   </head>
 
   <body>
+    <!-- Preloader -->
+    <div id="preloader" role="status" aria-label="Loading Martex">
+      <div class="loader-content">
+        <div class="loader-logo-wrapper">
+          <div class="loader-spinner-ring"></div>
+          <div class="loader-logo-icon"></div>
+        </div>
+        <span class="loader-brand-title">MARTEX</span>
+        <div class="loader-progress-track">
+          <div class="loader-progress-bar"></div>
+        </div>
+      </div>
+    </div>
+
     <!-- Header -->
     <div id="header"></div>
 
