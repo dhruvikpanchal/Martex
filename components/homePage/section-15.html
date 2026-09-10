@@ -1,5 +1,5 @@
 <section
-  class="py--100 py-25 lg:max-xl:py-20 md:max-lg:py-17.5 ct-02 content-section division"
+  class="py--100 py-25 lg:max-xl:py-20 md:max-lg:py-17.5 ct-02 content-section division scroll-animate"
 >
   <div class="container">
     <!-- SECTION CONTENT (ROW) -->
@@ -132,5 +132,40 @@
     </div>
     <!-- END SECTION CONTENT (ROW) -->
   </div>
-  <!-- End container -->
 </section>
+
+<!-- Mobile-specific layout improvements for Section 15 (preserves hover effects and desktop/tablet layout) -->
+<style>
+  @media (max-width: 767.98px) {
+    .content-section .img-block {
+      margin-bottom: 4.5rem !important;
+    }
+    .cbox-2 .ico-wrap {
+      flex-shrink: 0 !important;
+      width: 2.35rem !important;
+      margin-right: 1.15rem !important;
+    }
+    .cbox-2 .cbox-2-ico {
+      width: 2.35rem !important;
+      height: 2.35rem !important;
+      min-width: 2.35rem !important;
+      min-height: 2.35rem !important;
+      max-width: 2.35rem !important;
+      max-height: 2.35rem !important;
+      flex-shrink: 0 !important;
+      font-size: 1.15rem !important;
+      line-height: 2.15rem !important;
+      text-align: center !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-radius: 50% !important;
+    }
+    .cbox-2 .cbox-2-line {
+      height: calc(100% - 74px) !important;
+      bottom: 1.25rem !important;
+      top: auto !important;
+    }
+  }
+</style>
+

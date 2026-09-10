@@ -1,0 +1,242 @@
+/* ============================================
+   THEME CONFIGURATION & TOKENS
+============================================ */
+@theme {
+  --font-Jakarta: "Plus Jakarta Sans", sans-serif;
+  --breakpoint-xsm: 375px;
+  --color-brand-pink: #f6467f;
+  --color-brand-pinkDark: #e8306c;
+  --color-brand-dark: #2b2b38;
+  --color-brand-muted: #6a6a74;
+}
+
+:root {
+  --page-content-width: 1280px;
+  --page-gutter: clamp(1.25rem, 3vw, 3rem);
+}
+
+/* ============================================
+   DARK MODE (site-wide)
+   Class-based dark theme for html.dark.
+============================================ */
+html.dark,
+html.dark body {
+  background-color: #0c0e14;
+  color: #94a3b8;
+}
+
+html.dark main {
+  background-color: #0c0e14 !important;
+}
+
+html.dark section,
+html.dark .features-section,
+html.dark .content-section,
+html.dark .bg-white,
+html.dark .bg-\[\#fff\],
+html.dark .gr--smoke {
+  background-color: #12151e !important;
+}
+
+html.dark .bg-\[\#f2f4f8\],
+html.dark .bg-\[\#f4f4f9\],
+html.dark .bg-\[\#f9f9fb\] {
+  background-color: #181c28 !important;
+}
+
+/* Headings and dark text */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6,
+html.dark .text-\[\#303b4f\],
+html.dark .text-\[\#353F4F\],
+html.dark .text-\[\#2b2b38\],
+html.dark .text-\[\#243b5a\],
+html.dark .text-brand-dark,
+html.dark .section-title h2,
+html.dark .section-id,
+html.dark .s-24,
+html.dark .s-26,
+html.dark .s-46 {
+  color: #f1f5f9 !important;
+}
+
+/* Paragraphs and muted text */
+html.dark p,
+html.dark .text-\[\#757575\],
+html.dark .text-\[\#64748b\],
+html.dark .text-brand-muted,
+html.dark .section-title p,
+html.dark .list-item,
+html.dark .simple-list li {
+  color: #94a3b8 !important;
+}
+
+/* Cards, boxes, and borders */
+html.dark .feature-box,
+html.dark .fbox-2,
+html.dark .fbox-5,
+html.dark .fbox-12,
+html.dark .txt-box,
+html.dark .card {
+  border-color: #262c3d !important;
+}
+
+html.dark .feature-blob path {
+  fill: color-mix(in srgb, var(--color-brand-pink, #f6467f) 20%, #12151e);
+}
+
+html.dark .border-gray-100 {
+  border-color: #262c3d !important;
+}
+
+/* Sticky Header in Dark Mode */
+html.dark .site-header.is-scrolled::before {
+  background: #12151e !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+html.dark .site-header.is-scrolled .header-logo-text,
+html.dark .site-header.is-scrolled .header-desktop-nav > a,
+html.dark .site-header.is-scrolled .header-desktop-nav > .group > a,
+html.dark .site-header.is-scrolled .header-actions > a:first-child {
+  color: #f1f5f9 !important;
+}
+
+html.dark .site-header.is-scrolled .header-menu-bar {
+  background-color: #f1f5f9 !important;
+}
+
+html.dark .site-header #mobileMenu,
+html.dark #mobileMenu {
+  background-color: #12151e !important;
+  border-color: #262c3d !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark #mobileMenu a:not(.mobile-signup-btn),
+html.dark #mobileMenu button {
+  color: #f1f5f9 !important;
+}
+
+html.dark #mobileMenu .mobile-dropdown-toggle {
+  color: #f1f5f9 !important;
+}
+
+html.dark #mobileMenu .mobile-sub-toggle {
+  color: #cbd5e1 !important;
+}
+
+html.dark #mobileMenu .mobile-dropdown a {
+  color: #94a3b8 !important;
+}
+
+html.dark #mobileMenu a:not(.mobile-signup-btn):hover,
+html.dark #mobileMenu button:hover,
+html.dark #mobileMenu .mobile-dropdown-toggle:hover,
+html.dark #mobileMenu .mobile-sub-toggle:hover,
+html.dark #mobileMenu .mobile-dropdown a:hover {
+  color: var(--color-brand-pink, #f6467f) !important;
+}
+
+html.dark #mobileMenu .mobile-signup-btn {
+  background-color: var(--color-brand-pink, #f6467f) !important;
+  color: #ffffff !important;
+}
+
+html.dark #mobileMenu .mobile-signup-btn:hover {
+  background-color: var(--color-brand-pinkDark, #e8306c) !important;
+  color: #ffffff !important;
+}
+
+html.dark #mobileMenu svg.chevron {
+  color: #94a3b8 !important;
+}
+
+html.dark #mobileMenu .mobile-dropdown-toggle:hover svg.chevron,
+html.dark #mobileMenu .mobile-sub-toggle:hover svg.chevron {
+  color: var(--color-brand-pink, #f6467f) !important;
+}
+
+html.dark #mobileMenu li {
+  border-color: #262c3d !important;
+}
+
+html.dark #mobileMenu .mobile-actions {
+  background-color: #12151e !important;
+  border-color: #262c3d !important;
+}
+
+html.dark #mobileMenu .mobile-signin-btn,
+html.dark #mobileMenu .mobile-actions a:first-child {
+  color: #94a3b8 !important;
+}
+
+html.dark #mobileMenu .mobile-signin-btn:hover,
+html.dark #mobileMenu .mobile-actions a:first-child:hover {
+  color: var(--color-brand-pink, #f6467f) !important;
+}
+
+/* Header Dropdowns (About & Pages) in Dark Mode */
+html.dark .header-desktop-nav .group > div > div {
+  background-color: #161a26 !important;
+  border: 1px solid #262c3d !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+html.dark .header-desktop-nav .group > div > div a {
+  color: #e2e8f0 !important;
+}
+
+html.dark .header-desktop-nav .group > div > div a:hover {
+  background-color: #22293b !important;
+  color: var(--color-brand-pink, #f6467f) !important;
+}
+
+/* Footer in Dark Mode */
+html.dark footer {
+  background-color: #0a0c12 !important;
+  border-top: 1px solid #1e2433;
+}
+
+html.dark footer h4,
+html.dark footer .text-brand-dark {
+  color: #f1f5f9 !important;
+}
+
+html.dark footer a,
+html.dark footer .text-brand-muted {
+  color: #94a3b8 !important;
+}
+
+html.dark footer a:hover {
+  color: var(--color-brand-pink, #f6467f) !important;
+}
+
+/* Theme image swapping */
+html.dark .light-theme-img {
+  display: none !important;
+}
+
+html.dark .dark-theme-img {
+  display: block !important;
+  position: static !important;
+}
+
+/* Welcome modal in dark mode */
+html.dark .welcome-modal__panel {
+  background-color: #181c28;
+  border: 1px solid #262c3d;
+}
+
+/* Banner Light Text in Dark Mode (Section 20 & Hero) */
+html.dark #section-20 p,
+html.dark #section-20 [class*="text-white"],
+html.dark #section-20 .text-white,
+html.dark .bg-\[\#633F97\] p,
+html.dark #hero-1 p {
+  color: rgba(255, 255, 255, 0.9) !important;
+}

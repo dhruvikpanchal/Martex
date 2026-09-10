@@ -89,12 +89,15 @@
     <div class="flex-1 overflow-y-auto px-5 py-5 space-y-6 text-sm">
       <!-- Mode Switcher -->
       <div>
-        <label
+        <span
+          id="displayModeHeading"
           class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-3"
         >
           Display Mode
-        </label>
+        </span>
         <div
+          role="group"
+          aria-labelledby="displayModeHeading"
           class="grid grid-cols-2 gap-2 p-1 bg-[#12141c] rounded-xl border border-white/5"
         >
           <button
@@ -143,16 +146,21 @@
       <!-- Color Schemes -->
       <div>
         <div class="flex items-center justify-between mb-3">
-          <label
+          <span
+            id="accentColorHeading"
             class="text-xs font-bold uppercase tracking-wider text-slate-400"
           >
             Accent Color
-          </label>
+          </span>
           <span id="activeColorName" class="text-xs font-medium text-[#f6467f]"
             >Pink</span
           >
         </div>
-        <div class="grid grid-cols-4 gap-3">
+        <div
+          role="group"
+          aria-labelledby="accentColorHeading"
+          class="grid grid-cols-4 gap-3"
+        >
           <!-- Pink (Default) -->
           <button
             type="button"

@@ -1,0 +1,100 @@
+/* ============================================
+   HOMEPAGE WELCOME MODAL
+============================================ */
+.modal-is-open {
+  overflow: hidden;
+}
+
+.welcome-modal {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity 220ms ease,
+    visibility 0s linear 220ms;
+}
+
+.welcome-modal.is-open {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 220ms ease;
+}
+
+.welcome-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(18 25 38 / 0.7);
+  backdrop-filter: blur(4px);
+}
+
+.welcome-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 55rem);
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  box-shadow: 0 1.5rem 4rem rgb(10 16 28 / 0.35);
+  transform: translateY(1rem) scale(0.98);
+  transition: transform 220ms ease;
+}
+
+.welcome-modal.is-open .welcome-modal__panel {
+  transform: translateY(0) scale(1);
+}
+
+.welcome-modal__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.welcome-modal__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.welcome-modal__close {
+  position: absolute;
+  z-index: 2;
+  top: 0.75rem;
+  right: 0.75rem;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #303b4f;
+  cursor: pointer;
+  font-size: 1.75rem;
+  line-height: 1;
+  box-shadow: 0 0.25rem 0.8rem rgb(10 16 28 / 0.18);
+}
+
+.welcome-modal__close:focus-visible,
+.welcome-modal__link:focus-visible {
+  outline: 3px solid #f6467f;
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .welcome-modal__panel {
+    width: min(100%, 34rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-modal,
+  .welcome-modal__panel {
+    transition: none;
+  }
+}

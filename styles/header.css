@@ -1,0 +1,232 @@
+/* ============================================
+   SITE HEADER & NAVIGATION
+============================================ */
+
+/* Transparent over the hero, then solid after the page begins to scroll */
+.site-header {
+  isolation: isolate;
+  background-color: transparent;
+  color: #fff;
+  transition:
+    box-shadow 240ms ease,
+    backdrop-filter 240ms ease,
+    color 240ms ease;
+}
+
+.site-header::before {
+  position: absolute;
+  color: #353f4f;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  opacity: 0;
+  background: linear-gradient(90deg, #fff 78%, #fff 78%, #fff 78%);
+  box-shadow: 0 8px 24px rgb(47 25 78 / 0.12);
+  transition: opacity 240ms ease;
+}
+
+.site-header.is-scrolled {
+  color: #303b4f;
+}
+
+.site-header.is-scrolled::before {
+  opacity: 1;
+}
+
+.header-logo-mark {
+  display: inline-block;
+  background-color: #ffffff;
+  mask: url("../assets/icons/logo.png") center / contain no-repeat;
+  -webkit-mask: url("../assets/icons/logo.png") center / contain no-repeat;
+  transition: background-color 240ms ease;
+}
+
+.site-header:not(.is-scrolled) .header-logo-mark {
+  background-color: #ffffff !important;
+}
+
+.site-header.is-scrolled .header-logo-mark {
+  background-color: var(--color-brand-pink, #f6467f) !important;
+  filter: none !important;
+}
+
+.site-header.is-scrolled .header-logo-text,
+.site-header.is-scrolled .header-desktop-nav > a,
+.site-header.is-scrolled .header-desktop-nav > .group > a,
+.site-header.is-scrolled .header-actions > a:first-child {
+  color: #303b4f;
+}
+
+.header-menu-bar {
+  background-color: #ffffff;
+}
+
+.site-header.is-scrolled .header-menu-bar {
+  background-color: #303b4f;
+}
+
+html.dark .header-menu-bar,
+html.dark .site-header.is-scrolled .header-menu-bar {
+  background-color: #f1f5f9 !important;
+}
+
+/* Header Sign Up Button Hover */
+.header-signup-btn {
+  background-color: var(--color-brand-pink, #f6467f);
+  border: 2px solid transparent;
+  color: #ffffff;
+  transition: all 0.25s ease;
+}
+
+/* When header is at the top (over hero banner) */
+.site-header:not(.is-scrolled) .header-signup-btn:hover {
+  background-color: transparent !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* When header is scrolled in light mode -> black border & black text */
+.site-header.is-scrolled .header-signup-btn:hover {
+  background-color: transparent !important;
+  border-color: #303b4f !important;
+  color: #303b4f !important;
+}
+
+/* In dark mode (both top and scrolled) -> white border & white text */
+html.dark .site-header .header-signup-btn:hover,
+html.dark .site-header.is-scrolled .header-signup-btn:hover {
+  background-color: transparent !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* ============================================
+   MOBILE MENU DRAWER
+============================================ */
+#mobileMenu {
+  background-color: #ffffff;
+  color: #353f4f;
+}
+
+#mobileMenu a:not(.mobile-signup-btn),
+#mobileMenu button,
+#mobileMenu .mobile-dropdown-toggle {
+  color: #353f4f !important;
+}
+
+#mobileMenu .mobile-sub-toggle {
+  color: #475569 !important;
+}
+
+#mobileMenu .mobile-dropdown a {
+  color: #64748b !important;
+}
+
+#mobileMenu svg.chevron {
+  color: #64748b !important;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#mobileMenu a:not(.mobile-signup-btn):hover,
+#mobileMenu button:hover,
+#mobileMenu .mobile-dropdown-toggle:hover,
+#mobileMenu .mobile-sub-toggle:hover,
+#mobileMenu .mobile-dropdown a:hover,
+#mobileMenu .mobile-dropdown-toggle:hover svg.chevron,
+#mobileMenu .mobile-sub-toggle:hover svg.chevron {
+  color: var(--color-brand-pink, #f6467f) !important;
+}
+
+#mobileMenu .mobile-actions {
+  background-color: #ffffff !important;
+  border-top: 1px solid #f1f5f9 !important;
+}
+
+#mobileMenu .mobile-signin-btn,
+#mobileMenu .mobile-actions a:first-child {
+  font-size: 1.125rem !important;
+  font-weight: 500 !important;
+  color: #64748b !important;
+}
+
+#mobileMenu .mobile-signin-btn:hover,
+#mobileMenu .mobile-actions a:first-child:hover {
+  color: var(--color-brand-pink, #f6467f) !important;
+}
+
+/* Sign Up Button (White text in all modes) */
+#mobileMenu .mobile-signup-btn,
+html.dark #mobileMenu .mobile-signup-btn {
+  background-color: var(--color-brand-pink, #f6467f) !important;
+  color: #ffffff !important;
+  font-size: 1.125rem !important;
+  font-weight: 600 !important;
+}
+
+#mobileMenu .mobile-signup-btn:hover,
+html.dark #mobileMenu .mobile-signup-btn:hover {
+  background-color: var(--color-brand-pinkDark, #e8306c) !important;
+  color: #ffffff !important;
+}
+
+/* Dark Mode Mobile Menu Drawer */
+html.dark #mobileMenu {
+  background-color: #12151e !important;
+  border-color: #262c3d !important;
+  color: #f1f5f9 !important;
+}
+
+html.dark #mobileMenu a:not(.mobile-signup-btn),
+html.dark #mobileMenu button,
+html.dark #mobileMenu .mobile-dropdown-toggle {
+  color: #f1f5f9 !important;
+}
+
+html.dark #mobileMenu .mobile-sub-toggle {
+  color: #cbd5e1 !important;
+}
+
+html.dark #mobileMenu .mobile-dropdown a {
+  color: #94a3b8 !important;
+}
+
+html.dark #mobileMenu svg.chevron {
+  color: #94a3b8 !important;
+}
+
+html.dark #mobileMenu a:not(.mobile-signup-btn):hover,
+html.dark #mobileMenu button:hover,
+html.dark #mobileMenu .mobile-dropdown-toggle:hover,
+html.dark #mobileMenu .mobile-sub-toggle:hover,
+html.dark #mobileMenu .mobile-dropdown a:hover,
+html.dark #mobileMenu .mobile-dropdown-toggle:hover svg.chevron,
+html.dark #mobileMenu .mobile-sub-toggle:hover svg.chevron {
+  color: var(--color-brand-pink, #f6467f) !important;
+}
+
+html.dark #mobileMenu li {
+  border-color: #262c3d !important;
+}
+
+html.dark #mobileMenu .mobile-actions {
+  background-color: #12151e !important;
+  border-color: #262c3d !important;
+}
+
+html.dark #mobileMenu .mobile-signin-btn,
+html.dark #mobileMenu .mobile-actions a:first-child {
+  color: #94a3b8 !important;
+}
+
+html.dark #mobileMenu .mobile-signin-btn:hover,
+html.dark #mobileMenu .mobile-actions a:first-child:hover {
+  color: var(--color-brand-pink, #f6467f) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header::before {
+    transition: none;
+  }
+}
+

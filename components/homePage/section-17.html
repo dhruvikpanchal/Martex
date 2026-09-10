@@ -39,21 +39,12 @@
         overflow: hidden;
       }
 
-      /* subtle depth without being loud */
-      .rating-section::before {
-        content: "";
-        position: absolute;
-        top: -180px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 720px;
-        height: 360px;
-        background: radial-gradient(
-          closest-side,
-          rgba(255, 179, 12, 0.06),
-          transparent 70%
-        );
-        pointer-events: none;
+      html.dark .rating-section {
+        background: #12151e !important;
+      }
+
+      html.dark .rating-title {
+        color: #f1f5f9 !important;
       }
 
       .rating-title {
@@ -130,7 +121,7 @@
     </style>
   </head>
   <body>
-    <section id="rating-1" class="rating-section">
+    <section id="rating-1" class="rating-section scroll-animate">
       <div class="max-w-5xl mx-auto px-6">
         <!-- RATING TITLE -->
         <div class="text-center mb-14 md:mb-16">
@@ -158,7 +149,7 @@
                 alt="Capterra"
               />
             </div>
-            <div class="star-badge bg-white dark:bg-black">
+            <div class="star-badge bg-white dark:bg-[#1D212C]">
               <span class="stars" aria-hidden="true"></span>
               <span class="rating-value dark:text-white">4.7/5</span>
             </div>

@@ -1,0 +1,39 @@
+/* ============================================
+   BASE & LAYOUT STYLES
+============================================ */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Shared content alignment for every home-page section */
+.container,
+.features-container {
+  width: 100%;
+  max-width: var(--page-content-width);
+  margin-inline: auto;
+  padding-inline: var(--page-gutter);
+}
+
+/* Sections that use bespoke markup still follow the same page gutter */
+#section-10 #lnk-3 > div,
+#section-10 #lnk-3 + section,
+#section-11 > section > .mb-12,
+#section-20 > section {
+  padding-inline: var(--page-gutter);
+}
+
+#section-20 > section > div:first-child {
+  max-width: var(--page-content-width);
+  margin-inline: auto;
+}
+
+.hide {
+  display: none;
+}
